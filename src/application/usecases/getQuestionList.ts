@@ -4,7 +4,9 @@ import { QuestionRepository } from "domain/repositories/question.repository";
 export class GetQuestionList {
   constructor(private questionRepository: QuestionRepository) {}
 
-  async run(): Promise<Question[]> {
-    return await this.questionRepository.get();
+ 
+
+  async run(category: string): Promise<Question[]> {
+    return await this.questionRepository.get(category);
   }
 }

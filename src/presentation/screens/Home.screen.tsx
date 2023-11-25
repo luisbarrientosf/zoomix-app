@@ -1,18 +1,28 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { Button, Text, View } from "react-native";
 
-type HomeParams = {
+type HomeScreenParams = {
   navigation: any;
 }
 
-export const HomeScreen = ({ navigation }: HomeParams) => {
+export const HomeScreen = ({ navigation }: HomeScreenParams) => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
+      <Text>Select your category:</Text>
       <Button
-        title="Go to QuestionList Screen"
-        onPress={() => navigation.navigate("QuestionList")}
+        title="Personal"
+        onPress={() => navigation.navigate("QuestionList", { category: "personal" })}
+      />
+      <Button
+        title="Hypothetical"
+        onPress={() => navigation.navigate("QuestionList", { category: "hypothetical" })}
+      />
+      <Button
+        title="+18"
+        onPress={() => navigation.navigate("QuestionList", { category: "+18"})}
+      />
+      <Button
+        title="All"
+        onPress={() => navigation.navigate("QuestionList", { category: "all"})}
       />
     </View>
   );
