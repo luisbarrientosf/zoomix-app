@@ -1,9 +1,13 @@
 import thunk from "redux-thunk";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { questionsReducer } from "./reducers/questions.reducers";
+import { getQuestionsReducer } from "./reducers/getQuestions.reducer";
+import { likeQuestionReducer } from "./reducers/likeQuestion.reducer";
+import { saveQuestionReducer } from "./reducers/saveQuestion.reducer";
 
 const reducers = combineReducers({
-  questions: questionsReducer
+  getQuestions: getQuestionsReducer,
+  likeQuestion: likeQuestionReducer,
+  saveQuestion: saveQuestionReducer
 });
 
 export const store = configureStore({

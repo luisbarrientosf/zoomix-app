@@ -9,8 +9,8 @@ type QuestionListScreenParams = {
 
 export const QuestionListScreen = ({ route } : QuestionListScreenParams) => {
   const { category } = route.params;
-  const loading = useAppSelector(state => state.questions.loading);
-  const questions = useAppSelector(state => state.questions.value);
+  const loading = useAppSelector(state => state.getQuestions.loading);
+  const questions = useAppSelector(state => state.getQuestions.value);
   const dispatch = useAppDispatch();
 
   return (

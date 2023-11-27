@@ -1,7 +1,11 @@
 import { FC } from "react";
-import { Button, Dimensions, StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { Question } from "../../../domain/entities/question.entity";
-// import { useAppDispatch } from "infrastructure/redux/hooks";
+import { useAppDispatch } from "../../../infrastructure/redux/hooks";
+import { likeQuestion } from "../../../infrastructure/redux/actions/likeQuestion.actions";
+import { saveQuestion } from "../../../infrastructure/redux/actions/saveQuestion.actions";
+import { LikeButton } from "../Buttons/LikeButton";
+import { SaveButton } from "../Buttons/SaveButton";
 
 const { width } = Dimensions.get("window");
 
@@ -10,7 +14,7 @@ type QuestionCardProps = {
 }
 
 export const QuestionCard: FC<QuestionCardProps> = ({ question }) => {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <View style={styles.questionCardContainer}>
@@ -21,13 +25,13 @@ export const QuestionCard: FC<QuestionCardProps> = ({ question }) => {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <Button
-          title="Like"
-          onPress={() => { /* dispatch(likeQuestion(user.id, question.id)) */ }}
+        <LikeButton 
+          onPress={() => dispatch(likeQuestion(question.id, ""))}
+          isLiked={question.isLiked}
         />
-        <Button
-          title="Save"
-          onPress={() => { /* dispatch(saveQuestion(user.id, question.id)) */ }}
+        <SaveButton 
+          onPress={() => dispatch(saveQuestion(question.id, ""))} 
+          isSaved={question.isSaved}
         />
       </View>
     </View>
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-    backgroundColor: "rgba(250, 170, 170, 0.5)",
+    backgroundColor: "white",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
