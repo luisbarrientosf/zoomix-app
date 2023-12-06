@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    paddingHorizontal: 12
   },
   title: {
     fontWeight: "600",

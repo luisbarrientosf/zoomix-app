@@ -53,8 +53,6 @@ const styles = StyleSheet.create({
   rowCard: {
     backgroundColor: "white",
     borderRadius: 10,
-    borderColor: "#EAEAEA",
-    borderWidth: 1,
     paddingVertical: 12,
     paddingHorizontal: 16,
     width,
