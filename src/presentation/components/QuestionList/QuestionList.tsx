@@ -1,5 +1,5 @@
 import { Question } from "../../../domain/entities/question.entity";
-import React, { FC, useRef } from "react";
+import React, { FC } from "react";
 import {
   Dimensions,
   FlatList,
@@ -9,38 +9,32 @@ import {
   View,
 } from "react-native";
 
-const width = Dimensions.get("screen").width;
+const width = Dimensions.get("screen").width - 26;
 
 interface QuestionListProps {
   data: Question[];
 }
 
-const QuestionList: FC<QuestionListProps> = ({ data }) => {
+export const QuestionList: FC<QuestionListProps> = ({ data }) => {
   
   const QuestionRow: ListRenderItem<Question> = ({ item }) => {
     return (
-      <View style={{
-        backgroundColor: "white",
-        borderRadius: 15,
-        paddingVertical: 5,
-        height: 50,
-        width: width,
-        marginBottom: 5,
-      }}>
-        <Text>
+      <View style={styles.rowCard}>
+        <Text style={styles.rowTitle}>
           {item.question}
         </Text>
-        
+        <Text style={styles.rowCategory}>
+          {item.category}
+        </Text>
       </View>
     );
   };
 
   return (
-    <View style={{height: 300}}>
+    <View style={styles.container}>
       <FlatList
         data={data}
         renderItem={QuestionRow}
-        contentContainerStyle={styles.flatListContainer}
         disableIntervalMomentum
         decelerationRate="fast"
         scrollEventThrottle={16}
@@ -52,11 +46,29 @@ const QuestionList: FC<QuestionListProps> = ({ data }) => {
   );
 };
 
-export default QuestionList;
-
 const styles = StyleSheet.create({
-  flatListContainer: {
-    alignItems: "center",
+  container: {
+    height: 420
+  },
+  rowCard: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    borderColor: "#EAEAEA",
+    borderWidth: 1,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
     width,
+    margin: 1,
+    marginBottom: 8,
+    elevation: 1,
+  },
+  rowTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#222222",
+    marginBottom: 6,
+  },
+  rowCategory: {
+    color: "#5A5A5A"
   }
 });
