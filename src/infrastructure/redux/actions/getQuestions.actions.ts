@@ -3,7 +3,6 @@ import { ActionType, Action } from "../actions/getQuestions.types";
 import { GetQuestionList } from "../../../application/usecases/getQuestionList";
 import { QuestionApi } from "../../../infrastructure/repositories/question.api";
 
-
 export const getQuestions = (category: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch({

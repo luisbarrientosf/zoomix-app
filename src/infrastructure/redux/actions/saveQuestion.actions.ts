@@ -3,7 +3,6 @@ import { ActionType, Action } from "./saveQuestion.types";
 import { SaveQuestion } from "../../../application/usecases/saveQuestion";
 import { QuestionApi } from "../../repositories/question.api";
 
-
 export const saveQuestion = (questionId: string, userId: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch({

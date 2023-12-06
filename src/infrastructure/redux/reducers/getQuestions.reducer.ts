@@ -2,6 +2,7 @@ import { Question } from "../../../domain/entities/question.entity";
 import { Action as GetQuestionAction, ActionType as GetQuestionsActionType } from "../actions/getQuestions.types";
 import { Action as LikeQuestionAction, ActionType as LikeQuestionActionType } from "../actions/likeQuestion.types";
 import { Action as SaveQuestionAction, ActionType as SaveQuestionActionType } from "../actions/saveQuestion.types";
+
 export interface State {
   value: Question[] | null;
   loading: boolean;
@@ -15,7 +16,6 @@ const initialState: State = {
 };
 
 type Action = GetQuestionAction | LikeQuestionAction | SaveQuestionAction;
-
 
 export const getQuestionsReducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
@@ -39,7 +39,6 @@ export const getQuestionsReducer = (state: State = initialState, action: Action)
       error: action.payload,
     };
   }
-
   case LikeQuestionActionType.LIKE_QUESTION_SUCCESS: {
     if(state.value?.length) {
       return {
@@ -54,7 +53,6 @@ export const getQuestionsReducer = (state: State = initialState, action: Action)
     }
     return state;
   }
-  
   case SaveQuestionActionType.SAVE_QUESTION_SUCCESS: {
     if(state.value?.length) {
       return {
@@ -69,7 +67,6 @@ export const getQuestionsReducer = (state: State = initialState, action: Action)
     }
     return state;
   }
-
   default:
     return state;
   }

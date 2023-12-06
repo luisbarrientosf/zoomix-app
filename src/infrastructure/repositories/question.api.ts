@@ -45,4 +45,37 @@ export class QuestionApi implements QuestionRepository {
       isSaved: true
     };
   }
+
+  async getMyQuestions(userId: string): Promise<Question[]> {
+    // should query questions by category on backend
+    await fetch("https://jsonplaceholder.typicode.com/photos")
+      .then(response => response.json());
+    
+
+    return [
+      { id: "1", question: "question example 1 ?", likesCounter: 147612, category: "personal", isLiked: false, isSaved: false },
+      { id: "2", question: "question example 2 ?", likesCounter: 1349, category: "personal", isLiked: false, isSaved: false },
+      { id: "3", question: "question example 3 ?", likesCounter: 10, category: "personal", isLiked: false, isSaved: false },
+      { id: "4", question: "question example 4 ?", likesCounter: 10, category: "personal", isLiked: false, isSaved: false },
+      { id: "5", question: "question example 5 ?", likesCounter: 10, category: "+18", isLiked: false, isSaved: false },
+      { id: "6", question: "question example 6 ?", likesCounter: 10, category: "+18", isLiked: false, isSaved: false }
+    ];
+  }
+
+  async delete(questionId: string, userId: string): Promise<Question> {
+    // should like questions on backend
+    await fetch("https://jsonplaceholder.typicode.com/photos")
+      .then(response => response.json());
+
+    return { 
+      id: questionId,
+      question: "deleted",
+      likesCounter: 147612,
+      category: "",
+      isLiked: true,
+      isSaved: false
+    };
+  }
+
+
 }
