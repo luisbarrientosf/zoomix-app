@@ -22,27 +22,27 @@ export const MyQuestionsScreen = ({ navigation } : MyQuestionsScreenParams) => {
     }
   });
 
-  return (
-    <SafeAreaView style={styles.container}>
-      
-      { loading && <Text>Loading...</Text> }
-      { !loading && (questions !== null && questions.length > 0) && (
-        <>
-          <View style={styles.header}>
-            <Text style={styles.title}>My Questions</Text>
-            <FontAwesome
-              onPress={() => navigation.pop()}
-              name={"arrow-left"}
-              size={28}
-              color={"#AAAAAA"}
-            />
-          </View>
+  if(loading){
+    return <Text>Loading...</Text>;
+  }
+  
+  if(!loading && (questions !== null && questions.length > 0)) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>My Questions</Text>
+          <FontAwesome
+            onPress={() => navigation.pop()}
+            name={"arrow-left"}
+            size={28}
+            color={"#AAAAAA"}
+          />
+        </View>
           
-          <QuestionList data={questions}/>
-        </>
-      )}
-    </SafeAreaView>
-  );
+        <QuestionList data={questions}/>
+      </SafeAreaView>
+    );
+  }
 };
 
 const styles = StyleSheet.create({

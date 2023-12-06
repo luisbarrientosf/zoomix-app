@@ -1,13 +1,15 @@
 import { Question } from "../../../domain/entities/question.entity";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   Dimensions,
   FlatList,
   ListRenderItem,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
+import { DeleteQuestionModal } from "../DeleteQuestionModal/DeleteQuestionModal";
 
 const width = Dimensions.get("screen").width - 26;
 
@@ -16,33 +18,48 @@ interface QuestionListProps {
 }
 
 export const QuestionList: FC<QuestionListProps> = ({ data }) => {
-  
+  const [questionPressed, setQuestionPressed] = useState<Question | null>(null);
+  const [isDeleteQuestionModalOpen, setIsDeleteQuestionModalOpen] = useState<boolean>(false);
+
   const QuestionRow: ListRenderItem<Question> = ({ item }) => {
     return (
-      <View style={styles.rowCard}>
+      <TouchableOpacity
+        style={styles.rowCard}
+        onPress={() => {
+          setQuestionPressed(item);
+          setIsDeleteQuestionModalOpen(true);
+        }}
+      >
         <Text style={styles.rowTitle}>
           {item.question}
         </Text>
         <Text style={styles.rowCategory}>
           {item.category}
         </Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={data}
-        renderItem={QuestionRow}
-        disableIntervalMomentum
-        decelerationRate="fast"
-        scrollEventThrottle={16}
-        renderToHardwareTextureAndroid
-        scrollEnabled
-        scrollToOverflowEnabled
+    <>
+      <View style={styles.container}>
+        <FlatList
+          data={data}
+          renderItem={QuestionRow}
+          disableIntervalMomentum
+          decelerationRate="fast"
+          scrollEventThrottle={16}
+          renderToHardwareTextureAndroid
+          scrollEnabled
+          scrollToOverflowEnabled
+        />
+      </View>
+      <DeleteQuestionModal
+        data={questionPressed}
+        isVisible={isDeleteQuestionModalOpen}
+        setIsVisible={setIsDeleteQuestionModalOpen}
       />
-    </View>
+    </>
   );
 };
 
