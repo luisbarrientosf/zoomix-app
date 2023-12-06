@@ -2,7 +2,7 @@ import { Button, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getQuestions } from "../../infrastructure/redux/actions/getQuestions.actions";
 import { useAppDispatch, useAppSelector } from "../../infrastructure/redux/hooks";
-import QuestionCardCarousel from "../../presentation/components/QuestionCardCarousel/QuestionCardCarousel";
+import { QuestionCardCarousel } from "../../presentation/components/QuestionCardCarousel/QuestionCardCarousel";
 
 type QuestionListScreenParams = {
   route: any;

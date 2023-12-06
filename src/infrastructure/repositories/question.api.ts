@@ -47,7 +47,7 @@ export class QuestionApi implements QuestionRepository {
   }
 
   async getMyQuestions(userId: string): Promise<Question[]> {
-    // should query questions by category on backend
+    // should query my questions on backend
     await fetch("https://jsonplaceholder.typicode.com/photos")
       .then(response => response.json());
     
@@ -63,7 +63,7 @@ export class QuestionApi implements QuestionRepository {
   }
 
   async delete(questionId: string, userId: string): Promise<Question> {
-    // should like questions on backend
+    // should delete questions on backend
     await fetch("https://jsonplaceholder.typicode.com/photos")
       .then(response => response.json());
 

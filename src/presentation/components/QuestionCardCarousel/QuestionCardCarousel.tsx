@@ -18,7 +18,7 @@ interface QuestionCardCarouselProps {
   data: Question[];
 }
 
-const QuestionCardCarousel: FC<QuestionCardCarouselProps> = ({ data }) => {
+export const QuestionCardCarousel: FC<QuestionCardCarouselProps> = ({ data }) => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const flatListRef = useRef<FlatList<Question>>(null);
 
@@ -71,8 +71,6 @@ const QuestionCardCarousel: FC<QuestionCardCarouselProps> = ({ data }) => {
     />
   );
 };
-
-export default QuestionCardCarousel;
 
 const styles = StyleSheet.create({
   flatListContainer: {

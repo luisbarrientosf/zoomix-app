@@ -3,7 +3,7 @@ import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getMyQuestions } from "../../infrastructure/redux/actions/getMyQuestions.actions";
 import { useAppDispatch, useAppSelector } from "../../infrastructure/redux/hooks";
-import QuestionList from "../components/QuestionList/QuestionList";
+import { QuestionList } from "../components/QuestionList/QuestionList";
 
 type MyQuestionsScreenParams = {
   route: any;
