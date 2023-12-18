@@ -5,6 +5,7 @@ import { likeQuestionReducer } from "./reducers/likeQuestion.reducer";
 import { saveQuestionReducer } from "./reducers/saveQuestion.reducer";
 import { getMyQuestionsReducer } from "./reducers/getMyQuestions.reducer.";
 import { deleteQuestionReducer } from "./reducers/deleteQuestion.reducer";
+import { reactotron } from "../../infrastructure/reactotron/reactotron";
 
 const reducers = combineReducers({
   getQuestions: getQuestionsReducer,
@@ -15,10 +16,11 @@ const reducers = combineReducers({
 });
 
 export const store = configureStore({
-  reducer: reducers, 
+  reducer: reducers,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+  enhancers: [reactotron!.createEnhancer()]
 });
-
+  
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export default store;

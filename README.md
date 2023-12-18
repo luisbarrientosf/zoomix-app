@@ -7,8 +7,10 @@ Zoomix is a game to interact with your friends and ask them randomized questions
 - Clean Architecture
 - Repository pattern
 - Typescript
-- React Native 0.72
+- React Native 0.73
 - React Redux
+- Lottie
+- Reactotron
 
 ### Main features
 
