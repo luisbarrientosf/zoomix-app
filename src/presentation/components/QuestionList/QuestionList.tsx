@@ -1,4 +1,3 @@
-import { Question } from "../../../domain/entities/question.entity";
 import React, { FC, useState } from "react";
 import {
   Dimensions,
@@ -9,7 +8,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Question } from "../../../domain/entities/question.entity";
+import { User } from "../../../domain/entities/user.entity";
 import { DeleteQuestionModal } from "../DeleteQuestionModal/DeleteQuestionModal";
+import { useAppDispatch } from "../../../infrastructure/redux/hooks";
+import { deleteQuestionInit } from "../../../infrastructure/redux/actions/deleteQuestion.actions";
 
 const width = Dimensions.get("screen").width - 26;
 
@@ -20,12 +23,16 @@ interface QuestionListProps {
 export const QuestionList: FC<QuestionListProps> = ({ data }) => {
   const [questionPressed, setQuestionPressed] = useState<Question | null>(null);
   const [isDeleteQuestionModalOpen, setIsDeleteQuestionModalOpen] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+
+  const user: User = { id: "sampleId", email: "test@email.com" };
 
   const QuestionRow: ListRenderItem<Question> = ({ item }) => {
     return (
       <TouchableOpacity
         style={styles.rowCard}
         onPress={() => {
+          dispatch(deleteQuestionInit());
           setQuestionPressed(item);
           setIsDeleteQuestionModalOpen(true);
         }}
@@ -54,11 +61,14 @@ export const QuestionList: FC<QuestionListProps> = ({ data }) => {
           scrollToOverflowEnabled
         />
       </View>
-      <DeleteQuestionModal
-        data={questionPressed}
-        isVisible={isDeleteQuestionModalOpen}
-        setIsVisible={setIsDeleteQuestionModalOpen}
-      />
+      { questionPressed && (
+        <DeleteQuestionModal
+          question={questionPressed}
+          user={user}
+          isVisible={isDeleteQuestionModalOpen}
+          setIsVisible={setIsDeleteQuestionModalOpen}
+        />
+      )}
     </>
   );
 };

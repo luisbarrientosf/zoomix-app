@@ -19,6 +19,7 @@ export const deleteQuestionReducer = (state: State = initialState, action: Actio
     return {
       ...state,
       loading: true,
+      value: null,
     };
   }
   case ActionType.DELETE_QUESTION_SUCCESS: {
@@ -34,6 +35,9 @@ export const deleteQuestionReducer = (state: State = initialState, action: Actio
       loading: false,
       error: action.payload,
     };
+  }
+  case ActionType.DELETE_QUESTION_INIT: {
+    return initialState;
   }
   default:
     return state;

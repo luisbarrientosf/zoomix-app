@@ -27,4 +27,12 @@ export const deleteQuestion = (questionId: string, userId: string) => {
       });
     }
   };
+};
+
+export const deleteQuestionInit = () => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.DELETE_QUESTION_INIT
+    });
+  };
 }; 
