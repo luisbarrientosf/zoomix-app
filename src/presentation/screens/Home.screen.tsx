@@ -1,11 +1,12 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { StackParams } from "../../presentation/navigation/StackNavigator";
 
-type HomeScreenParams = {
-  navigation: any;
-}
 
-export const HomeScreen = ({ navigation }: HomeScreenParams) => {
+interface Props extends NativeStackScreenProps<StackParams, "Home"> {}
+
+export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Zoomix</Text>

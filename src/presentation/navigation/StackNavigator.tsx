@@ -3,7 +3,13 @@ import { HomeScreen } from "../screens/Home.screen";
 import { QuestionListScreen } from "../screens/QuestionList.screen";
 import { MyQuestionsScreen } from "../screens/MyQuestions.screen";
 
-const Stack = createNativeStackNavigator();
+export type StackParams = {
+  Home: undefined;
+  QuestionList: { category: string };
+  MyQuestions: undefined;
+};
+
+const Stack = createNativeStackNavigator<StackParams>();
 
 export const StackNavigator = () => {
   return (

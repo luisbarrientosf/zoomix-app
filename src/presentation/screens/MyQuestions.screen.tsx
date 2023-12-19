@@ -5,13 +5,13 @@ import { FontAwesome } from "@expo/vector-icons";
 import { getMyQuestions, getMyQuestionsInit } from "../../infrastructure/redux/actions/getMyQuestions.actions";
 import { useAppDispatch, useAppSelector} from "../../infrastructure/redux/hooks";
 import { QuestionList } from "../components/QuestionList/QuestionList";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { StackParams } from "../../presentation/navigation/StackNavigator";
 
 
-type MyQuestionsScreenParams = {
-  navigation: any;
-}
+interface Props extends NativeStackScreenProps<StackParams, "MyQuestions"> {}
 
-export const MyQuestionsScreen = ({ navigation } : MyQuestionsScreenParams) => {
+export const MyQuestionsScreen: React.FC<Props> = ({ navigation }) => {
   const loading = useAppSelector(state => state.getMyQuestions.loading);
   const questions = useAppSelector(state => state.getMyQuestions.value);
   const dispatch = useAppDispatch();

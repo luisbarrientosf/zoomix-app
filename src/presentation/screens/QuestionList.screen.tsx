@@ -4,13 +4,13 @@ import { FontAwesome } from "@expo/vector-icons";
 import { getQuestions } from "../../infrastructure/redux/actions/getQuestions.actions";
 import { useAppDispatch, useAppSelector } from "../../infrastructure/redux/hooks";
 import { QuestionCardCarousel } from "../../presentation/components/QuestionCardCarousel/QuestionCardCarousel";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { StackParams } from "../../presentation/navigation/StackNavigator";
 
-type QuestionListScreenParams = {
-  route: any;
-  navigation: any;
-}
 
-export const QuestionListScreen = ({ route, navigation } : QuestionListScreenParams) => {
+interface Props extends NativeStackScreenProps<StackParams, "QuestionList"> {}
+
+export const QuestionListScreen: React.FC<Props> = ({ route, navigation }) => {
   const { category } = route.params;
   const loading = useAppSelector(state => state.getQuestions.loading);
   const questions = useAppSelector(state => state.getQuestions.value);
