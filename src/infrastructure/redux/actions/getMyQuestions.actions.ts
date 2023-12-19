@@ -27,4 +27,12 @@ export const getMyQuestions = (userId: string) => {
       });
     }
   };
-}; 
+};
+
+export const getMyQuestionsInit = () => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.GET_MY_QUESTIONS_INIT
+    });
+  };
+};

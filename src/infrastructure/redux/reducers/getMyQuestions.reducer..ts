@@ -35,6 +35,11 @@ export const getMyQuestionsReducer = (state: State = initialState, action: Actio
       error: action.payload,
     };
   }
+  case ActionType.GET_MY_QUESTIONS_INIT: {
+    return {
+      ...initialState,
+    };
+  }
   default:
     return state;
   }

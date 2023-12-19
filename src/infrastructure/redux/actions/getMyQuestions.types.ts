@@ -3,7 +3,8 @@ import { Question } from "../../../domain/entities/question.entity";
 export enum ActionType {
   GET_MY_QUESTIONS_PENDING = "GET_MY_QUESTIONS_PENDING",
   GET_MY_QUESTIONS_SUCCESS = "GET_MY_QUESTIONS_SUCCESS",
-  GET_MY_QUESTIONS_FAIL = "GET_MY_QUESTIONS_FAIL"
+  GET_MY_QUESTIONS_FAIL = "GET_MY_QUESTIONS_FAIL",
+  GET_MY_QUESTIONS_INIT = "GET_MY_QUESTIONS_INIT",
 }
 
 interface actionPending {
@@ -20,4 +21,8 @@ interface actionFail {
   payload: string;
 }
 
-export type Action = actionPending | actionSuccess | actionFail;
+interface actionInit {
+  type: ActionType.GET_MY_QUESTIONS_INIT;
+}
+
+export type Action = actionPending | actionSuccess | actionFail | actionInit;

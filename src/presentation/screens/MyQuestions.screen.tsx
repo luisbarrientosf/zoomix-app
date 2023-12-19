@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome } from "@expo/vector-icons";
-import { getMyQuestions } from "../../infrastructure/redux/actions/getMyQuestions.actions";
-import { useAppDispatch, useAppSelector } from "../../infrastructure/redux/hooks";
+import { getMyQuestions, getMyQuestionsInit } from "../../infrastructure/redux/actions/getMyQuestions.actions";
+import { useAppDispatch, useAppSelector} from "../../infrastructure/redux/hooks";
 import { QuestionList } from "../components/QuestionList/QuestionList";
 
 
@@ -16,33 +16,34 @@ export const MyQuestionsScreen = ({ navigation } : MyQuestionsScreenParams) => {
   const questions = useAppSelector(state => state.getMyQuestions.value);
   const dispatch = useAppDispatch();
 
-  useEffect(()=> {
-    if(questions === null) {
+  useEffect(() => {
+    if(questions === null && loading === false) {
       dispatch(getMyQuestions("userId"));
     }
-  });
+    return () => {
+      dispatch(getMyQuestionsInit());
+    };
+  }, []);
 
-  if(loading){
-    return <Text>Loading...</Text>;
-  }
-  
-  if(!loading && (questions !== null && questions.length > 0)) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>My Questions</Text>
-          <FontAwesome
-            onPress={() => navigation.pop()}
-            name={"arrow-left"}
-            size={28}
-            color={"#AAAAAA"}
-          />
-        </View>
-          
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>My Questions</Text>
+        <FontAwesome
+          onPress={() => navigation.pop()}
+          name={"arrow-left"}
+          size={28}
+          color={"#AAAAAA"}
+        />
+      </View>
+        
+      { questions !== null ? (
         <QuestionList data={questions}/>
-      </SafeAreaView>
-    );
-  }
+      ) : (
+        <Text>Loading...</Text>
+      )} 
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
