@@ -10,8 +10,8 @@ export class QuestionApi implements QuestionRepository {
 
     return [
       { id: "1", question: "question example 1 ?", likesCounter: 147612, category, isLiked: false, isSaved: false },
-      { id: "2", question: "question example 2 ?", likesCounter: 1349, category, isLiked: false, isSaved: false },
-      { id: "3", question: "question example 3 ?", likesCounter: 10, category, isLiked: false, isSaved: false }
+      { id: "2", question: "question example 2 ?", likesCounter: 1349, category: "+18", isLiked: false, isSaved: false },
+      { id: "3", question: "question example 3 ?", likesCounter: 10, category: "any", isLiked: false, isSaved: false }
     ];
   }
 
